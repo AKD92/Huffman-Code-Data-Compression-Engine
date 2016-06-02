@@ -1,0 +1,40 @@
+# Project: Huffman Code Data Compression Engine
+# Makefile created by Dev-C++ 5.11
+
+CPP      = g++.exe
+CC       = gcc.exe
+WINDRES  = windres.exe
+OBJ      = obj/main.o obj/huffcode_build_algorithms.o obj/huffcode_compression_algorithms.o obj/huffcode_freq.o obj/bitadapter.o
+LINKOBJ  = obj/main.o obj/huffcode_build_algorithms.o obj/huffcode_compression_algorithms.o obj/huffcode_freq.o obj/bitadapter.o
+LIBS     = -L"C:/Dev-Cpp/MinGW32/lib" -L"C:/Dev-Cpp/MinGW32/mingw32/lib" -static-libstdc++ -static-libgcc -L"../Priority Queue ADT (Double Ended)/lib" -L"../Generic Binary Heap Data Structure & Algorithms/lib" -lpq -lbiheap -s
+INCS     = -I"C:/Dev-Cpp/MinGW32/include" -I"C:/Dev-Cpp/MinGW32/mingw32/include" -I"C:/Dev-Cpp/MinGW32/lib/gcc/mingw32/4.8.1/include" -I"../Priority Queue ADT (Double Ended)/src" -I"../Generic Binary Heap Data Structure & Algorithms/src"
+CXXINCS  = -I"C:/Dev-Cpp/MinGW32/include" -I"C:/Dev-Cpp/MinGW32/mingw32/include" -I"C:/Dev-Cpp/MinGW32/lib/gcc/mingw32/4.8.1/include" -I"C:/Dev-Cpp/MinGW32/lib/gcc/mingw32/4.8.1/include/c++" -I"../Priority Queue ADT (Double Ended)/src" -I"../Generic Binary Heap Data Structure & Algorithms/src"
+BIN      = lib/hfman.exe
+CXXFLAGS = $(CXXINCS) -ansi -std=c99 -Wall
+CFLAGS   = $(INCS) -ansi -std=c99 -Wall
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CC) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+obj/main.o: src/main.c
+	$(CC) -c src/main.c -o obj/main.o $(CFLAGS)
+
+obj/huffcode_build_algorithms.o: src/huffcode_build_algorithms.c
+	$(CC) -c src/huffcode_build_algorithms.c -o obj/huffcode_build_algorithms.o $(CFLAGS)
+
+obj/huffcode_compression_algorithms.o: src/huffcode_compression_algorithms.c
+	$(CC) -c src/huffcode_compression_algorithms.c -o obj/huffcode_compression_algorithms.o $(CFLAGS)
+
+obj/huffcode_freq.o: src/huffcode_freq.c
+	$(CC) -c src/huffcode_freq.c -o obj/huffcode_freq.o $(CFLAGS)
+
+obj/bitadapter.o: src/bitadapter.c
+	$(CC) -c src/bitadapter.c -o obj/bitadapter.o $(CFLAGS)
